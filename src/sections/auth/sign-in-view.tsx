@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
@@ -28,13 +29,17 @@ export function SignInView() {
 
   const handleSignIn = useCallback(() => {
 
+    // keneth@gmail.com
+    // 1234@abcd
 
     const success = Auth(username, password);
 
     if (success) {
-      router.push('../../dashboard');
+      console.log("entro aqui success")
+      router.push('/dashboard');
     } else {
-      router.push('../efeeee');
+      console.log("entro aqui error")
+      setError('Correo o contraseña incorrectos')
     }
 
 
@@ -51,7 +56,8 @@ export function SignInView() {
       <TextField
         fullWidth
         name="email"
-        label="Email address"
+        label="Correo"
+        type='email'
         // placeholder='hola@gmail.com'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
@@ -62,13 +68,13 @@ export function SignInView() {
       />
 
       <Link variant="body2" color="inherit" sx={{ mb: 1.5 }}>
-        Forgot password?
+        ¿Olvidaste tu contraseña?
       </Link>
 
       <TextField
         fullWidth
         name="password"
-        label="Password"
+        label="Contraseña"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         type={showPassword ? 'text' : 'password'}
@@ -87,10 +93,15 @@ export function SignInView() {
         sx={{ mb: 3 }}
       />
 
-      {error && (
+      {/* {error && (
         <Typography variant="body2" color="error" sx={{ mb: 2 }}>
           {error}
         </Typography>
+      )} */}
+      {error && (
+        <Alert variant="filled" severity="error" sx={{ width: '100%', mb: 2 }}>
+          {error}
+        </Alert>
       )}
 
       <Button
@@ -101,7 +112,7 @@ export function SignInView() {
         variant="contained"
         onClick={handleSignIn}
       >
-        Sign in
+        Ingresar
       </Button>
     </Box>
   );
@@ -117,26 +128,28 @@ export function SignInView() {
           mb: 5,
         }}
       >
-        <Typography variant="h5">Sign in</Typography>
+        <Typography variant="h5">Inicia Sesión</Typography>
         <Typography
           variant="body2"
           sx={{
             color: 'text.secondary',
           }}
         >
-          Don’t have an account?
+          ¿No tienes una cuenta?
           <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-            Get started
+            Regístrate
           </Link>
         </Typography>
       </Box>
+
       {renderForm}
+
       <Divider sx={{ my: 3, '&::before, &::after': { borderTopStyle: 'dashed' } }}>
         <Typography
           variant="overline"
           sx={{ color: 'text.secondary', fontWeight: 'fontWeightMedium' }}
         >
-          OR
+          O
         </Typography>
       </Divider>
       <Box

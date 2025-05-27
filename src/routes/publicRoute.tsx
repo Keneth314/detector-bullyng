@@ -4,14 +4,13 @@ import { Navigate } from 'react-router-dom';
 
 import { isAuthenticated } from 'src/sections/auth/auth';
 
-
 interface Props {
-    children: ReactElement;
+  children: ReactElement;
 }
 
-export function ProtectedRoute({ children }: Props) {
-  if (!isAuthenticated()) {
-    return <Navigate to="/login" replace />;
+export function PublicRoute({ children }: Props) {
+  if (isAuthenticated()) {
+    return <Navigate to="/dashboard" replace />;
   }
   return children;
 }

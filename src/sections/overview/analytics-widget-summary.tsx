@@ -8,11 +8,10 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { useTheme } from '@mui/material/styles';
 
-import { fNumber, fPercent, fShortenNumber } from 'src/utils/format-number';
+import { fNumber } from 'src/utils/format-number';
 
-import { Iconify } from 'src/components/iconify';
+import { useChart } from 'src/components/chart';
 import { SvgColor } from 'src/components/svg-color';
-import { Chart, useChart } from 'src/components/chart';
 
 // ----------------------------------------------------------------------
 
@@ -125,7 +124,7 @@ export function AnalyticsWidgetSummary({
       </Box>
 
       <SvgColor
-        src="/assets/background/shape-square.svg"
+        src="`${import.meta.env.BASE_URL}assets/background/shape-square.svg"
         sx={{
           top: 0,
           left: -20,

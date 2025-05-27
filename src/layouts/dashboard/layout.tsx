@@ -6,10 +6,11 @@ import { useBoolean } from 'minimal-shared/hooks';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 import { _langs, _notifications } from 'src/_mock';
 
-import { NavMobile, NavDesktop } from './nav';
+import { NavMobile } from './nav';
 import { layoutClasses } from '../core/classes';
 import { _account } from '../nav-config-account';
 import { dashboardLayoutVars } from './css-vars';
@@ -57,6 +58,8 @@ export function DashboardLayout({
         maxWidth: false,
       },
     };
+    
+    const userName = localStorage.getItem('name');
 
     const headerSlots: HeaderSectionProps['slots'] = {
       topArea: (
@@ -75,7 +78,10 @@ export function DashboardLayout({
         </>
       ),
       rightArea: (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0, sm: 0.75 } }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '99%', gap: { xs: 0, sm: 0.75 } }}>
+          <Typography variant="h5" textAlign='left'>
+            Hola {userName || 'usuario'}, bienvenido 👋
+          </Typography>
           {/** @slot Searchbar */}
           {/* <Searchbar /> */}
 

@@ -1,8 +1,8 @@
 import type { RouteObject } from 'react-router';
 
 import { lazy, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
 import { varAlpha } from 'minimal-shared/utils';
+import { Outlet , Navigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -10,7 +10,12 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import { AuthLayout } from 'src/layouts/auth';
 import { DashboardLayout } from 'src/layouts/dashboard';
 
+import { isAuthenticated } from 'src/sections/auth/auth';
+
+import { PublicRoute } from './publicRoute';
 import { ProtectedRoute } from './protectedRoute';
+
+
 
 // ----------------------------------------------------------------------
 // Definir rutas con Lazy Loading
@@ -44,19 +49,29 @@ const renderFallback = () => (
 
 export const routesSection: RouteObject[] = [
   {
+    path: '/',
     element: (
-      <DashboardLayout>
-        <Suspense fallback={renderFallback()}>
-          <Outlet />
-        </Suspense>
-      </DashboardLayout>
+      <Suspense fallback={renderFallback()}>
+        <Outlet />
+      </Suspense>
     ),
     children: [
-      { index: true, element: <AuthLayout><SignInPage /></AuthLayout>},
+      {
+        index: true,
+        element: isAuthenticated() ? (
+          <Navigate to="../dashboard" replace />
+        ) : (
+          <AuthLayout>
+            <SignInPage />
+          </AuthLayout>
+        ),
+      },
+
       { path: 'usuario', element: <ProtectedRoute><UserPage /></ProtectedRoute> },
       { path: 'productos', element: <ProtectedRoute><ProductsPage /></ProtectedRoute> },
       { path: 'blog', element: <ProtectedRoute><BlogPage /></ProtectedRoute> },
-      { path: 'dashboard', element: <ProtectedRoute><DashboardPage /></ProtectedRoute>},
+      { path: 'dashboard', element: <ProtectedRoute><DashboardLayout><DashboardPage /></DashboardLayout></ProtectedRoute> },
+      { path: '*', element: <Page404 /> },
     ],
   },
 
@@ -64,9 +79,21 @@ export const routesSection: RouteObject[] = [
   {
     path: 'login',
     element: (
-      <AuthLayout>
-        <SignInPage />
-      </AuthLayout>
+      <PublicRoute>
+        <AuthLayout>
+          <SignInPage />
+        </AuthLayout>
+      </PublicRoute>
+    ),
+  },
+  {
+    path: 'sign-in',
+    element: (
+      <PublicRoute>
+        <AuthLayout>
+          <SignInPage />
+        </AuthLayout>
+      </PublicRoute>
     ),
   },
   {

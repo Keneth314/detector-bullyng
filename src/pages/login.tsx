@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   Box,
+  Stack,
   Button,
   TextField,
-  Typography,
-  Stack,
   Container,
+  Typography,
 } from '@mui/material';
 
 import {Auth} from '../sections/auth/auth';

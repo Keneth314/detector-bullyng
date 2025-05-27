@@ -1,6 +1,8 @@
+
 import type { IconButtonProps } from '@mui/material/IconButton';
 
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,7 +16,10 @@ import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 
 import { useRouter, usePathname } from 'src/routes/hooks';
 
-import { _myAccount } from 'src/_mock';
+import { logout } from 'src/sections/auth/auth';
+// import { _myAccount } from 'src/_mock';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +32,10 @@ export type AccountPopoverProps = IconButtonProps & {
   }[];
 };
 
+
+
 export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps) {
+  
   const router = useRouter();
 
   const pathname = usePathname();
@@ -49,6 +57,24 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
     },
     [handleClosePopover, router]
   );
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // Llama a tu función definida
+    navigate('../', { replace: true }); // Redirige al login
+  };
+
+  const nameU = localStorage.getItem('name');
+  const emailU = localStorage.getItem('email');
+  console.log(nameU, emailU)
+  const _myAccount = {
+    displayName: nameU && nameU !== 'null' ? nameU : 'Usuario',
+    email: emailU && emailU !== 'null' ? emailU : 'usuario@gmail.com',
+    photoURL: `${import.meta.env.BASE_URL}assets/images/avatar/avatar-25.webp`,
+  };
+
+
 
   return (
     <>
@@ -129,8 +155,8 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth color="error" size="medium" variant="text">
-            Logout
+          <Button fullWidth color="error" size="medium" variant="text" onClick={handleLogout}>
+            Cerrar Sesión
           </Button>
         </Box>
       </Popover>

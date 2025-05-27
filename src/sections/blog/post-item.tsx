@@ -148,7 +148,7 @@ export function PostItem({
 
   const renderShape = (
     <SvgColor
-      src="/assets/icons/shape-avatar.svg"
+      src="`${import.meta.env.BASE_URL}assets/icons/shape-avatar.svg"
       sx={{
         left: 0,
         width: 88,

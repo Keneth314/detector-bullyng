@@ -8,6 +8,8 @@ import Alert from '@mui/material/Alert';
 
 import { RouterLink } from 'src/routes/components';
 
+import { pathAsset } from 'src/utils/pathAsset';
+
 import { Logo } from 'src/components/logo';
 
 import { AuthContent } from './content';
@@ -52,15 +54,15 @@ export function AuthLayout({
       leftArea: (
         <>
           {/** @slot Logo */}
-          <Logo />
+          {/* <Logo /> */}
         </>
       ),
       rightArea: (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
           {/** @slot Help link */}
-          <Link href="#" component={RouterLink} color="inherit" sx={{ typography: 'subtitle2' }}>
+          {/* <Link href="#" component={RouterLink} color="inherit" sx={{ typography: 'subtitle2' }}>
             Need help?
-          </Link>
+          </Link> */}
         </Box>
       ),
     };
@@ -110,11 +112,11 @@ export function AuthLayout({
       /** **************************************
        * @Header
        *************************************** */
-      headerSection={renderHeader()}
+      // headerSection={renderHeader()}
       /** **************************************
        * @Footer
        *************************************** */
-      footerSection={renderFooter()}
+      // footerSection={renderFooter()}
       /** **************************************
        * @Styles
        *************************************** */
@@ -144,5 +146,5 @@ const backgroundStyles = (): CSSObject => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',
-  backgroundImage: 'url(/assets/background/overlay.jpg)',
+  backgroundImage: `url(${import.meta.env.BASE_URL}assets/background/overlay.jpg)`,  
 });

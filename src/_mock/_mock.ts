@@ -153,9 +153,10 @@ export const _date = (index: number) =>
   ][index];
 
 export const users = [
-  { username: 'keneth', password: '123456' },
-  { username: 'jessica15', password: 'mypass' },
-  { username: 'brayanxd', password: 'hola123' },
+  { username: 'keneth@gmail.com', password: '1234@abcd', name: 'Keneth Lopez' },
+  { username: 'jessica15@gmail.com', password: '1234@abcd', name: 'Jessica Ruíz' },
+  { username: 'brayanxd@gmail.com', password: '1234@abcd', name: 'Brayan Montes' },
+  { username: 'juanpablo@gmail.com', password: '1234@abcd', name: 'Juan Pablo' },
 ];
 
 

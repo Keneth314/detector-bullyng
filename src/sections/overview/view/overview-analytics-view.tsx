@@ -2,19 +2,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { DashboardContent } from 'src/layouts/dashboard';
-import { _posts, _tasks, _traffic, _timeline } from 'src/_mock';
 
 import { UserView } from 'src/sections/user/view';
 
-import { AnalyticsNews } from '../analytics-news';
-import { AnalyticsTasks } from '../analytics-tasks';
-import { AnalyticsCurrentVisits } from '../analytics-current-visits';
-import { AnalyticsOrderTimeline } from '../analytics-order-timeline';
-import { AnalyticsWebsiteVisits } from '../analytics-website-visits';
 import { AnalyticsWidgetSummary } from '../analytics-widget-summary';
-import { AnalyticsTrafficBySite } from '../analytics-traffic-by-site';
-import { AnalyticsCurrentSubject } from '../analytics-current-subject';
-import { AnalyticsConversionRates } from '../analytics-conversion-rates';
 
 
 // ----------------------------------------------------------------------
@@ -22,9 +13,9 @@ import { AnalyticsConversionRates } from '../analytics-conversion-rates';
 export function OverviewAnalyticsView() {
   return (
     <DashboardContent maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
+      {/* <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
         Hola, bienvenido👋
-      </Typography>
+      </Typography> */}
     
       <Grid container spacing={3}>
 
@@ -34,8 +25,8 @@ export function OverviewAnalyticsView() {
             title="Riesgo Bajo"
             color="success"
             percent='20%'
-            total='20%'
-            // icon={<img alt="Weekly sales" src="/assets/icons/glass/ic-glass-bag.svg" />}
+            total='52%'
+            // icon={<img alt="Weekly sales" src="`${import.meta.env.BASE_URL}assets/icons/glass/ic-glass-bag.svg" />}
             icon="✅"
             chart={{
               // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -50,9 +41,9 @@ export function OverviewAnalyticsView() {
           <AnalyticsWidgetSummary
             title="Riesgo Medio"
             percent='30%'
-            total='30%'
+            total='32%'
             color="warning"
-            // icon={<img alt="New users" src="/assets/icons/glass/ic-glass-users.svg" />}
+            // icon={<img alt="New users" src="`${import.meta.env.BASE_URL}assets/icons/glass/ic-glass-users.svg" />}
             icon="⚠️"
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -65,9 +56,9 @@ export function OverviewAnalyticsView() {
           <AnalyticsWidgetSummary
             title="Riesgo Alto"
             percent='30%'
-            total='30%'
+            total='16%'
             color="error"
-            // icon={<img alt="Purchase orders" src="/assets/icons/glass/ic-glass-buy.svg" />}
+            // icon={<img alt="Purchase orders" src="`${import.meta.env.BASE_URL}assets/icons/glass/ic-glass-buy.svg" />}
             icon="🚨"
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -78,11 +69,11 @@ export function OverviewAnalyticsView() {
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <AnalyticsWidgetSummary
-            title="Riesto Total"
+            title="Riesgo Total"
             percent='44%'
-            total='44%'
+            total='24%'
             color="secondary"
-            // icon={<img alt="Messages" src="/assets/icons/glass/ic-glass-message.svg" />}
+            // icon={<img alt="Messages" src="`${import.meta.env.BASE_URL}assets/icons/glass/ic-glass-message.svg" />}
             icon="ℹ️"
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],

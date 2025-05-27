@@ -8,6 +8,7 @@ import react from '@vitejs/plugin-react-swc';
 const PORT = 3039;
 
 export default defineConfig({
+   base: '/detector-bullyng/',
   plugins: [
     react(),
     checker({
@@ -33,4 +34,15 @@ export default defineConfig({
   },
   server: { port: PORT, host: true },
   preview: { port: PORT, host: true },
+  build: {
+    outDir: 'build',  // <-- carpeta de salida para el build
+    minify: 'terser', // <-- minificación avanzada
+    terserOptions: {
+      compress: {
+        drop_console: true,    // elimina console.log para reducir tamaño
+        drop_debugger: true,
+      },
+    },
+    chunkSizeWarningLimit: 600, // opcional, aumenta límite para evitar warnings por tamaño
+  },
 });
